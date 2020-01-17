@@ -1,14 +1,15 @@
 import * as bodyParser from "body-parser";
 import express from "express";
 import logger from "morgan";
-import * as path from "path";
+import path from "path";
 import { CustomerController } from './controllers/customerController';
 import { inject } from 'inversify';
 import { Routes } from "./controllers/routes";
+import fs from 'fs';
+import morganBody from 'morgan-body';
 
-// Criando as configurações para o ExpressJS
 export class App {
-// Instancia dele
+
     public express: express.Application;
 
     constructor(private appRoutes: Routes) {
@@ -17,11 +18,15 @@ export class App {
         this.routes();
     }
 
-    // Configuração para o nosso middler
     private middleware(): void {
-        // this.express.use(logger("dev"));
+
+        this.express.use(logger('combined'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
+
+        if (process.env.NODE_ENV.toUpperCase() !== 'production') {
+            morganBody(this.express);
+        }
     }
 
     private routes(): void {
@@ -33,9 +38,6 @@ export class App {
                 message: "server is up",
             });
         });
-
-        // const a = new CustomerController();
-        // a.get(router);
 
         this.appRoutes.setRoutes(router);
 
