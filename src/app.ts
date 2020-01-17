@@ -37,7 +37,7 @@ export class App {
 
         router.get("/prod", (req, res, next) => {
             res.json({
-                message: process.env.NODE_VERBOSE === 'production',
+                message: process.env.NODE_ENV === 'production',
             });
         });
 
