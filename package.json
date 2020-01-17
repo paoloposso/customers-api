@@ -21,7 +21,7 @@
     "@types/morgan": "^1.7.32",
     "@types/node": "^11.11.3",
     "ts-node-dev": "^1.0.0-pre.32",
-    "tslint": "^5.13.1",
+    "tslint": "^5.13.1"
   },
   "dependencies": {
     "morgan-body": "^2.4.8",
