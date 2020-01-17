@@ -35,6 +35,12 @@ export class App {
             });
         });
 
+        router.get("/prod", (req, res, next) => {
+            res.json({
+                message: process.env.NODE_VERBOSE === 'production',
+            });
+        });
+
         this.appRoutes.setRoutes(router);
 
         this.express.use("/api", router);
