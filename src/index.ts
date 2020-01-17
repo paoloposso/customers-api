@@ -1,7 +1,7 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 import { App } from "./app";
-import DIContainer from './di/di-container';
 import { Routes } from "./controllers/routes";
+import DIContainer from "./di/di-container";
 
 const port = process.env.PORT || 3000;
 

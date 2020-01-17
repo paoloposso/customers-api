@@ -1,5 +1,5 @@
-import { Customer } from '../model/customer';
+import { Customer } from "../model/customer";
 
 export interface ICustomerRepository {
-    get(): Array<Customer>;
+    get(): Customer[];
 }

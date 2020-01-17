@@ -1,12 +1,8 @@
 import * as bodyParser from "body-parser";
 import express from "express";
 import logger from "morgan";
-import path from "path";
-import { CustomerController } from './controllers/customerController';
-import { inject } from 'inversify';
+import morganBody from "morgan-body";
 import { Routes } from "./controllers/routes";
-import fs from 'fs';
-import morganBody from 'morgan-body';
 
 export class App {
 
@@ -20,17 +16,17 @@ export class App {
 
     private middleware(): void {
 
-        this.express.use(logger('combined'));
+        this.express.use(logger("combined"));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
 
-        if (process.env.NODE_ENV.toUpperCase() !== 'production') {
+        if ((process.env.NODE_VERBOSE || 'true').toUpperCase() !== 'true') {
             morganBody(this.express);
         }
     }
 
     private routes(): void {
-        
+
         const router = express.Router();
 
         router.get("/", (req, res, next) => {
@@ -44,5 +40,3 @@ export class App {
         this.express.use("/api", router);
     }
 }
-
-// export default new App().express;

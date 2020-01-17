@@ -1,14 +1,14 @@
 import { Router } from "express";
+import { inject, injectable } from "inversify";
 import { Customer } from "../model/customer";
-import { injectable, inject } from "inversify";
-import { ICustomerRepository } from '../repository/iCustomerRepository';
+import { ICustomerRepository } from "../repository/iCustomerRepository";
 
 @injectable()
 export class CustomerController {
-    
-    constructor(@inject('ICustomerRepository') private customerRepository: ICustomerRepository) {}
 
-    get(router: Router) {
+    constructor(@inject("ICustomerRepository") private customerRepository: ICustomerRepository) {}
+
+    public get(router: Router) {
         router.get("/customers", (req, res, next) => {
             res.send(this.customerRepository.get());
         });
