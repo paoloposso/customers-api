@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import { Customer } from "../../model/customer";
-import { ICustomerRepository } from "../iCustomerRepository";
+import { ICustomerRepository } from "../i-customer-repository";
 
 @injectable()
 export class CustomerRepositoryMock implements ICustomerRepository {

@@ -1,11 +1,11 @@
 import "reflect-metadata";
 import { App } from "./app";
-import { Routes } from "./controllers/routes";
-import DIContainer from "./di/di-container";
+import { Routes } from "./routes/routes";
+import { DiContainer } from "./di/di-container";
 
 const port = process.env.PORT || 3000;
 
-const app = new App(DIContainer.resolve<Routes>(Routes)).express;
+const app = new App(new DiContainer().diContainer.resolve<Routes>(Routes)).express;
 
 app.set("port", port);
 

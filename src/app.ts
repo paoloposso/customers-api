@@ -2,7 +2,9 @@ import * as bodyParser from "body-parser";
 import express from "express";
 import logger from "morgan";
 import morganBody from "morgan-body";
-import { Routes } from "./controllers/routes";
+import { Routes } from "./routes/routes";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 export class App {
 
@@ -12,6 +14,8 @@ export class App {
         this.express = express();
         this.middleware();
         this.routes();
+        this.setEnvironmentVariables();
+        this.setDb();
     }
 
     private middleware(): void {
@@ -23,6 +27,17 @@ export class App {
         if ((process.env.NODE_VERBOSE || 'true').toUpperCase() !== 'true') {
             morganBody(this.express);
         }
+    }
+
+    private setEnvironmentVariables(): void {
+        dotenv.config();
+    }
+
+    private setDb(): void {
+        let uri = process.env.MONGODB_URI;
+
+        console.log(process.env.MONGODB_URI);
+        mongoose.connect(uri);
     }
 
     private routes(): void {
