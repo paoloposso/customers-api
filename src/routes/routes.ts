@@ -8,6 +8,6 @@ export class Routes {
     constructor(private customerRoutes: CustomerRoutes) {}
 
     public setRoutes(router: Router) {
-        this.customerRoutes.get(router);
+        this.customerRoutes.setRoutes(router);
     }
 }

@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash": "^4.14.149",
     "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.13.1"
   },
@@ -32,6 +33,7 @@
     "fs": "0.0.1-security",
     "install": "^0.13.0",
     "inversify": "^5.0.1",
+    "lodash": "^4.17.15",
     "mongoose": "^5.8.9",
     "morgan": "^1.7.0",
     "morgan-body": "^2.4.8",

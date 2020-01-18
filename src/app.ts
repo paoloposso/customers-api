@@ -1,10 +1,9 @@
 import * as bodyParser from "body-parser";
 import express from "express";
+import mongoose, { mongo } from "mongoose";
 import logger from "morgan";
 import morganBody from "morgan-body";
 import { Routes } from "./routes/routes";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
 
 export class App {
 
@@ -13,8 +12,7 @@ export class App {
     constructor(private appRoutes: Routes) {
         this.express = express();
         this.middleware();
-        this.routes();
-        this.setEnvironmentVariables();
+        this.setRoutes();
         this.setDb();
     }
 
@@ -24,23 +22,17 @@ export class App {
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
 
-        if ((process.env.NODE_VERBOSE || 'true').toUpperCase() !== 'true') {
+        if ((process.env.NODE_VERBOSE || 'false') === 'true') {
             morganBody(this.express);
         }
     }
 
-    private setEnvironmentVariables(): void {
-        dotenv.config();
+    private setDb() {
+        const uri = process.env.MONGODB_URI;
+        mongoose.connect(uri, {useNewUrlParser: true});
     }
 
-    private setDb(): void {
-        let uri = process.env.MONGODB_URI;
-
-        console.log(process.env.MONGODB_URI);
-        mongoose.connect(uri);
-    }
-
-    private routes(): void {
+    private setRoutes(): void {
 
         const router = express.Router();
 
@@ -52,7 +44,7 @@ export class App {
 
         router.get("/prod", (req, res, next) => {
             res.json({
-                message: process.env.NODE_ENV === 'production',
+                message: process.env.NODE_ENV === "production",
             });
         });
 

@@ -1,9 +1,12 @@
+import dotenv from "dotenv";
 import "reflect-metadata";
 import { App } from "./app";
+import { DiContainer } from "./config/di-container";
 import { Routes } from "./routes/routes";
-import { DiContainer } from "./di/di-container";
 
 const port = process.env.PORT || 3000;
+
+dotenv.config();
 
 const app = new App(new DiContainer().diContainer.resolve<Routes>(Routes)).express;
 
