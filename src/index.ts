@@ -8,11 +8,13 @@ const port = process.env.PORT || 3000;
 
 dotenv.config();
 
-const app = new App(new DiContainer().diContainer.resolve<Routes>(Routes)).express;
+const express = new App(new DiContainer().diContainer.resolve<Routes>(Routes)).express;
 
-app.set("port", port);
+express.set("port", port);
 
-app.listen(port, () => {
+express.listen(port, () => {
   // tslint:disable-next-line:no-console
   console.log(`server started at port ${port}`);
 });
+
+module.exports = {express};

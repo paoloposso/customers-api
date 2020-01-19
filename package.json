@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "start-watch": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "SET \"NODE_ENV=test\"&&npm run build&&mocha src/**/*.spec.js --timeout 10000",
     "build": "tsc",
     "dev": "ts-node-dev src/index.ts",
     "prestart": "npm run build",
@@ -16,7 +16,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/expect": "^24.3.0",
     "@types/lodash": "^4.14.149",
+    "@types/request": "^2.48.4",
+    "@types/should": "^13.0.0",
+    "chai": "^4.2.0",
+    "request": "^2.88.0",
+    "should": "^13.2.3",
     "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.13.1"
   },
@@ -27,6 +34,7 @@
     "@types/mongoose": "^5.5.41",
     "@types/morgan": "^1.7.32",
     "@types/node": "^11.11.3",
+    "@types/supertest": "^2.0.8",
     "body-parser": "^1.15.2",
     "dotenv": "^8.2.0",
     "express": "^4.14.0",
@@ -39,6 +47,7 @@
     "morgan-body": "^2.4.8",
     "npm": "^6.13.6",
     "reflect-metadata": "^0.1.13",
+    "supertest": "^4.0.2",
     "typescript": "^3.7.4"
   }
 }

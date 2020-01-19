@@ -7,7 +7,7 @@ import { Routes } from "./routes/routes";
 
 export class App {
 
-    public express: express.Application;
+    public express = express();
 
     constructor(private appRoutes: Routes) {
         this.express = express();
@@ -29,6 +29,7 @@ export class App {
 
     private setDb() {
         const uri = process.env.MONGODB_URI;
+
         mongoose.connect(uri, {useNewUrlParser: true});
     }
 
