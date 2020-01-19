@@ -3,9 +3,9 @@ import express from "express";
 import mongoose, { mongo } from "mongoose";
 import logger from "morgan";
 import morganBody from "morgan-body";
-import { Routes } from "./routes/routes";
+import { Routes } from "../routes/routes";
 
-export class App {
+export class AppBootstrap {
 
     public express = express();
 
@@ -28,8 +28,9 @@ export class App {
     }
 
     private setDb() {
-        const uri = process.env.MONGODB_URI;
+        const uri = process.env.NODE_ENV == 'test' ? process.env.MONGODB_URI_TEST : process.env.MONGODB_URI;
 
+        console.log(process.env.NODE_ENV);
         mongoose.connect(uri, {useNewUrlParser: true});
     }
 
@@ -40,12 +41,6 @@ export class App {
         router.get("/", (req, res, next) => {
             res.json({
                 message: "server is up",
-            });
-        });
-
-        router.get("/prod", (req, res, next) => {
-            res.json({
-                message: process.env.NODE_ENV === "production",
             });
         });
 

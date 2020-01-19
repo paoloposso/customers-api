@@ -27,7 +27,7 @@ export class CustomerRoutes {
                 let customer = await this.customerRepository.getById(req.params.id);
                 res.send(customer);
             } catch (err) {
-                res.status(503).send();
+                res.status(500).send();
             }
         });
 
@@ -36,13 +36,39 @@ export class CustomerRoutes {
 
                 var body = _.pick(req.body, ['name', 'email', 'document', 'id']);
 
-                if (!body) {
+                if (!body.id) {
                     throw new Error('Id is required');
                 }
                 let customer = await this.customerRepository.update(new Customer(body.name, body.email, body.document, body.id));
                 res.send(customer);
             } catch (error) {
-                res.status(200).send(error.message);
+                res.status(500).send(error.message);
+            }
+        });
+
+        router.post(`/${this.route}`, async (req, res, next) => {
+            try {
+
+                var body = _.pick(req.body, ['name', 'email', 'document']);
+
+                let customer = await this.customerRepository.insert(new Customer(body.name, body.email, body.document));
+                res.send(customer);
+            } catch (error) {
+                res.status(500).send(error.message);
+            }
+        });
+
+        router.delete(`/${this.route}`, async (req, res, next) => {
+            try {
+
+                if (!req.params.id) {
+                    throw new Error('id is required');
+                }
+
+                let customer = await this.customerRepository.delete(req.params.id);
+                res.send(customer);
+            } catch (error) {
+                res.status(500).send(error.message);
             }
         });
     }
