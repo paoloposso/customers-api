@@ -1,7 +1,7 @@
 import { injectable } from "inversify";
 import { Customer } from "../model/customer";
 import { ICustomerRepository } from "../repository/i-customer-repository";
-import CustomerSchema, { ICustomerDocument } from "./schemas/customer-schema";
+import CustomerSchema from "./schemas/customer-schema";
 
 @injectable()
 export class CustomerRepository implements ICustomerRepository {
