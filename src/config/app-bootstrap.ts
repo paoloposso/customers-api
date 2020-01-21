@@ -22,13 +22,13 @@ export class AppBootstrap {
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
 
-        if ((process.env.NODE_VERBOSE || 'false') === 'true') {
+        if ((process.env.NODE_VERBOSE || "false") === "true") {
             morganBody(this.express);
         }
     }
 
     private setDb() {
-        const uri = process.env.NODE_ENV == 'test' ? process.env.MONGODB_URI_TEST : process.env.MONGODB_URI;
+        const uri = process.env.NODE_ENV == "test" ? process.env.MONGODB_URI_TEST : process.env.MONGODB_URI;
 
         console.log(process.env.NODE_ENV);
         mongoose.connect(uri, {useNewUrlParser: true});

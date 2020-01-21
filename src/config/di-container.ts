@@ -16,7 +16,7 @@ export class DiContainer {
     public configure() {
         this.diContainer = new Container();
 
-        if (process.env.MOCK === 'true') {
+        if (process.env.MOCK === "true") {
             this.configureMockRepositories();
         } else {
             this.configureRepositories();
