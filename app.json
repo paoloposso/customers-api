@@ -1,0 +1,11 @@
+{
+    "name": "my-app",
+    "addons": [
+      "mongolab"
+    ],
+    "buildpacks": [
+      {
+        "url": "heroku/nodejs"
+      }
+    ]
+  }
