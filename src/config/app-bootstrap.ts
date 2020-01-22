@@ -30,7 +30,6 @@ export class AppBootstrap {
     private setDb() {
         const uri = process.env.NODE_ENV == "test" ? process.env.MONGODB_URI_TEST : process.env.MONGODB_URI;
 
-        console.log(process.env.NODE_ENV);
         mongoose.connect(uri, {useNewUrlParser: true});
     }
 
@@ -41,6 +40,12 @@ export class AppBootstrap {
         router.get("/", (req, res, next) => {
             res.json({
                 message: "server is up",
+            });
+        });
+
+        router.get("/end", (req, res, next) => {
+            res.json({
+                message: process.env.NODE_ENV
             });
         });
 
