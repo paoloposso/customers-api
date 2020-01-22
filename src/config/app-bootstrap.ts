@@ -45,7 +45,7 @@ export class AppBootstrap {
 
         router.get("/env", (req, res, next) => {
             res.json({
-                message: process.env.NODE_ENV
+                message: process.env.NODE_ENV,
             });
         });
 
