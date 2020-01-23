@@ -28,7 +28,8 @@ export class AppBootstrap {
     }
 
     private setDb() {
-        const uri = process.env.NODE_ENV == "test" ? process.env.MONGODB_URI_TEST : process.env.MONGODB_URI;
+        // const uri = process.env.NODE_ENV == "test" || (process.env.MONGODB_URI_TEST || process.env.MONGODB_URI);
+        const uri = process.env.MONGODB_URI;
 
         mongoose.connect(uri, {useNewUrlParser: true});
     }

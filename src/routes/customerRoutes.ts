@@ -3,6 +3,7 @@ import { inject, injectable, named } from "inversify";
 import * as _ from "lodash";
 import { Customer } from "../model/customer";
 import { ICustomerRepository } from "../repository/i-customer-repository";
+import mongoose from "mongoose";
 
 @injectable()
 export class CustomerRoutes {
@@ -49,16 +50,17 @@ export class CustomerRoutes {
         router.post(`/${this.route}`, async (req, res, next) => {
             try {
 
-                const body = _.pick(req.body, ["name", "email", "document"]);
+                const body = _.pick(req.body, ["_id", "name", "email", "document"]);
 
-                const customer = await this.customerRepository.insert(new Customer(body.name, body.email, body.document));
+                const customer = await this.customerRepository.insert(
+                    new Customer(body.name, body.email, body.document, mongoose.Types.ObjectId(body._id)));
                 res.send(customer);
             } catch (error) {
                 res.status(500).send(error.message);
             }
         });
 
-        router.delete(`/${this.route}`, async (req, res, next) => {
+        router.delete(`/${this.route}/:id`, async (req, res, next) => {
             try {
 
                 if (!req.params.id) {

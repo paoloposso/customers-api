@@ -7,6 +7,7 @@ import CustomerSchema from "./schemas/customer-schema";
 export class CustomerRepository implements ICustomerRepository {
     public insert(customer: Customer): Promise<Customer> {
         const customerSchema = new CustomerSchema(customer);
+        if (customer.id) customerSchema._id = customer.id;
         return customerSchema.save();
     }
     public update(customer: Customer): Promise<Customer> {
