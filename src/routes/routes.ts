@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { inject, injectable } from "inversify";
+import { injectable } from "inversify";
 import { CustomerRoutes } from "./customerRoutes";
 
 @injectable()
