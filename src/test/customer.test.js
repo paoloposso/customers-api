@@ -2,7 +2,7 @@ var should = require("should");
 var request = require('supertest');
 var chai = require("chai");
 var expect = chai.expect;
-const {express} = require('../../dist/index');
+const { express } = require('../../dist/index');
 const _ = require('lodash');
 const mongoose = require('mongoose');
 

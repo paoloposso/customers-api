@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "start-watch": "node dist/index.js",
-    "test": "npm run build&&mocha src/**/*.test.js --timeout 10000",
+    "test": "mocha src/**/*.test.js --timeout 10000",
     "build": "tsc",
     "dev": "ts-node-dev src/index.ts",
     "prepublish": "mocha src/**/*.test.js",
