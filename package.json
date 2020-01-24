@@ -9,7 +9,7 @@
     "test": "npm run build&&mocha src/**/*.test.js --timeout 10000",
     "build": "tsc",
     "dev": "ts-node-dev src/index.ts",
-    "prepublish": "mocha",
+    "prepublish": "mocha src/**/*.test.js",
     "prestart": "npm run build",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix"
   },
