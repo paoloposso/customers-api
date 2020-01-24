@@ -21,7 +21,7 @@ describe('Customer Api', () => {
                 expect(res.statusCode).to.equal(200);
                 expect(_.pick(res.body, ['name']).name).to.equal('Jane');
                 done();
-            });
+            }).catch(err => done());
     });
 
     // it('Should list all customers', (done) => {
