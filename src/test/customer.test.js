@@ -24,48 +24,48 @@ describe('Customer Api', () => {
             }).catch(err => done());
     });
 
-    // it('Should list all customers', (done) => {
+    it('Should list all customers', (done) => {
        
-    //     request(express)
-    //         .get('/api/customers')
-    //         .end((err, res) => {
+        request(express)
+            .get('/api/customers')
+            .end((err, res) => {
             
-    //             expect(res.statusCode).to.equal(200);
+                expect(res.statusCode).to.equal(200);
 
-    //             done(); 
-    //         });
-    // });
+                done(); 
+            });
+    });
 
-    // it('Should update customer', (done) => {
+    it('Should update customer', (done) => {
        
-    //     request(express)
-    //         .put('/api/customers')
-    //         .send({
-    //             "id": objId, name: 'Jane Smith', email: 'jane.sm@smith.com', document: '01234567890'
-    //         })
-    //         .end((err, res) => {
+        request(express)
+            .put('/api/customers')
+            .send({
+                "id": objId, name: 'Jane Smith', email: 'jane.sm@smith.com', document: '01234567890'
+            })
+            .end((err, res) => {
             
-    //             expect(res.statusCode).to.equal(200);
+                expect(res.statusCode).to.equal(200);
 
-    //             done(); 
-    //         });
-    // });
+                done(); 
+            });
+    });
 
-    // it('Should get customer with the new inserted id', (done) => {
-    //     request(express).get(`/api/customers/${objId}`)
-    //     .end((err, res) => {
-    //         expect(res.statusCode).to.equal(200);
-    //         expect(res.body.name).to.equal('Jane Smith');
-    //         done();
-    //     });
-    // });
+    it('Should get customer with the new inserted id', (done) => {
+        request(express).get(`/api/customers/${objId}`)
+        .end((err, res) => {
+            expect(res.statusCode).to.equal(200);
+            expect(res.body.name).to.equal('Jane Smith');
+            done();
+        });
+    });
 
-    // it('Should delete customer with new inserted id', (done) => {
-    //     request(express).delete(`/api/customers/${objId}`)
-    //     .end((err, res) => {
-    //         expect(res.statusCode).to.equal(200);
-    //         expect(res.body.name).to.equal('Jane Smith');
-    //         done();
-    //     });
-    // });
+    it('Should delete customer with new inserted id', (done) => {
+        request(express).delete(`/api/customers/${objId}`)
+        .end((err, res) => {
+            expect(res.statusCode).to.equal(200);
+            expect(res.body.name).to.equal('Jane Smith');
+            done();
+        });
+    });
 });
