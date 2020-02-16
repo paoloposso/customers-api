@@ -1,0 +1,14 @@
+version: "3"
+networks:
+  api_server_default:
+services:
+  customer-api:
+    networks:
+      - api_server_default
+    build:
+      context: .
+      dockerfile: dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 7001:7001
